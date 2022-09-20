@@ -17,11 +17,16 @@ class CreateBooksTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('description')->nullable();
-            $table->string('slug');
+            $table->string('slug')->unique();
             $table->decimal('price');
             $table->string('author');
             $table->timestamps();
+            $table->foreignId('bookshelf_id');
+            $table->foreignId('user_id');
         });
+
+
+
     }
 
     /**
