@@ -1,6 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Http\Resources\BookCollection;
+use App\Http\Resources\BookResource;
 use App\Models\Book; 
 
 use Illuminate\Http\Request;
@@ -14,7 +17,8 @@ class BookController extends Controller
      */
     public function index()
     {
-        return Book::all();
+        $books = Book::all();
+        return new BookCollection($books);
     }
 
     /**
@@ -44,10 +48,12 @@ class BookController extends Controller
      */
 
      //getting the single resource
-    public function show($id)
+    public function show(Book $book)
     {
-        return Book::find($id);
+        return new BookResource($book); //izmenjeni format knjige je resource
     }
+
+    
 
     /**
      * Update the specified resource in storage.
@@ -87,4 +93,8 @@ class BookController extends Controller
     {
         return Book::where('name', 'like', '%'.$name.'%')->get();
     }
+
+    
+
+
 }
