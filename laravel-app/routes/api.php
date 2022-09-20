@@ -17,11 +17,15 @@ use Illuminate\Support\Facades\Route;
 
 
 //Route::resource('books', BookController::class);
+Route::resource('books',BookController::class);   //rutiranje preko kontrolera
 Route::get('/books/search/{name}', [BookController::class,'search']);
 Route::get('/books/{id}', [BookController::class,'show']);
 Route::get('/books', [BookController::class,'index']);
 Route::post('/register',[AuthController::class,'register']); 
 Route::post('/login',[AuthController::class,'login']); 
+
+
+
 
 //protected routes
 Route::group(['middleware'=>['auth:sanctum']], function () {
