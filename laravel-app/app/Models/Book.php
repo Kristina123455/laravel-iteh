@@ -11,4 +11,13 @@ class Book extends Model
     protected $fillable=[
         'name', 'slug', 'description','price','author'
     ];
+
+    public function bookshelf(){
+        return $this->belongsTo(Bookshelf::class); //pripada jednoj polici 
+    }
+
+    public function user(){
+        return $this->belongsTo(User::class); //cita je jedan korisnik 
+    }
+
 }
